@@ -124,7 +124,7 @@ Just talk naturally in any Claude Code session:
 
 ---
 
-## Topic Auto-Promotion
+## Topic Auto-Promotion [ I'll update a youtube video later ]
 
 Reads that don't fit a named topic are filed under **Other** with a candidate topic label (e.g. "Databases"). When a candidate accumulates **3 logged reads**, it auto-promotes:
 
