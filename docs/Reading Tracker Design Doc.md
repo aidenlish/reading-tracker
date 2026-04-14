@@ -32,6 +32,7 @@ The goal: a zero-friction reading tracker that captures what I read, organizes i
 | F6 | Auto-organize reads by topic |
 | F7 | Auto-promote an emerging topic when it reaches a threshold (3 entries) |
 | F8 | All state persists across Claude Code sessions |
+| F9 | Mark a read-later item as finished: log it and remove it from the queue in one step |
 
 ### 2.2 Non-Functional Requirements
 
@@ -71,7 +72,8 @@ Five focused skills in `~/.claude/skills/`, each with its own `SKILL.md`.
 
 ```
 ~/.claude/skills/
-├── log-read/         auto-trigger: "I just read / finished..."
+├── log-read/         auto-trigger: "I just read / finished..." (item not in read-later)
+├── log-read-later/   auto-trigger: "I finished [queued item]", "mark as read"
 ├── read-later/       auto-trigger: "save this for later"
 ├── reading-today/    auto-trigger: "what did I read today?"
 ├── reading-list/     manual only:  /reading-list
@@ -167,7 +169,7 @@ This removes the need for the user to manually create topic files or reorganize 
 
 Results are labeled "*(candidate topic — not yet promoted)*" so the user understands the context.
 
-> For full implementation details, see `~/.claude/skills/log-read/SKILL.md`.
+> For full implementation details, see `~/.claude/skills/log-read/SKILL.md` and `~/.claude/skills/log-read-later/SKILL.md`.
 
 ---
 
@@ -175,7 +177,8 @@ Results are labeled "*(candidate topic — not yet promoted)*" so the user under
 
 | Skill | Trigger mode | `disable-model-invocation` | When Claude fires it |
 |-------|-------------|---------------------------|----------------------|
-| log-read | Auto | false | User mentions finishing/reading something |
+| log-read | Auto | false | User mentions finishing/reading something not in read-later |
+| log-read-later | Auto | false | User marks a previously queued item as finished |
 | read-later | Auto | false | User says "save for later" / "add to my list" |
 | reading-today | Auto | false | User asks what they read today |
 | reading-list | Manual only | true | `/reading-list` |
