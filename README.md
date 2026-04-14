@@ -13,6 +13,7 @@ Five Claude Code skills watch your conversation and react automatically:
 | Skill | Triggers when you say... |
 |-------|--------------------------|
 | `log-read` | "I just finished reading...", "just read this article..." |
+| `log-read-later` | "I finished the CQRS article", "done with [queued item]", "mark as read" |
 | `read-later` | "save this for later", "add to my list" |
 | `reading-today` | "what did I read today?" |
 | `/reading-list` | explicit command only |
@@ -34,7 +35,7 @@ All state is stored as plain markdown files in your Obsidian vault — no databa
 ### 1. Copy skills to your Claude skills directory
 
 ```bash
-cp -r skills/log-read skills/read-later skills/reading-today skills/reading-list skills/reading-history ~/.claude/skills/
+cp -r skills/log-read skills/log-read-later skills/read-later skills/reading-today skills/reading-list skills/reading-history ~/.claude/skills/
 ```
 
 ### 2. Update the vault path in each skill
@@ -51,6 +52,7 @@ Most skills have two hardcoded lines near the top. Replace them with your own va
 Files to update:
 ```
 ~/.claude/skills/log-read/SKILL.md
+~/.claude/skills/log-read-later/SKILL.md
 ~/.claude/skills/read-later/SKILL.md
 ~/.claude/skills/reading-today/SKILL.md   ← vault base only
 ~/.claude/skills/reading-list/SKILL.md
@@ -145,6 +147,7 @@ You can query a candidate topic before it's promoted — e.g. `/reading-history 
 reading-tracker/
 ├── skills/
 │   ├── log-read/SKILL.md
+│   ├── log-read-later/SKILL.md
 │   ├── read-later/SKILL.md
 │   ├── reading-today/SKILL.md
 │   ├── reading-list/SKILL.md
